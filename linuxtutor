@@ -1,0 +1,232 @@
+#!/bin/bash
+
+clear 
+
+echo -e "\e[32m[!]\e[0m Hello there!"
+echo "
+This is a small shell script which intends to teach you
+about the wonders of the terminal, lets start off with a common command"
+
+lssegment(){
+echo "
+ls - List state
+
+This command lists whatever is inside of a folder, try run it yourself and see what happens"
+
+tryls
+}
+
+tryls(){
+read -p "~ $ " tryls
+case $tryls in
+
+"ls")
+echo -e " 
+\e[34m Desktop    Downloads  ISOs    Pictures   Videos
+ Documents  Games      Music   Projects\e[0m
+
+If you were to actually run ls on your system, the output would look quite different, this is just a simulated environment for learning."
+tryls2
+;;
+
+*)
+echo "Wrong command, try again";
+;;
+esac
+}
+
+tryls2(){
+
+echo "There's also one important usage for ls which is for showing hidden files, these are files usually used for system configuration or other OS-related activities, most notable being ~/.config.
+
+Use the -a arguement starting after ls to use this."
+
+read -p "~ $ " tryls2
+case $tryls2 in
+
+"ls")
+echo -e " 
+\e[34m Desktop    Downloads  ISOs    Pictures   Videos
+ Documents  Games      Music   Projects\e[0m
+
+\n\e[31m[!]\e[0m Forgot to add the -a flag, try again."
+
+;;
+
+"ls -a")
+echo -e "
+ .android            .gtkrc-2.0      .ssh          .xinitrc
+ .bash_history       .icons          .steam        .zcompdump
+ .bash_logout        .idlerc         .steampath    .zshrc
+ .bash_profile       .java           .steampid     Desktop
+ .bashrc             .lesshst        .trash        Documents
+ .cache              .librewolf      .urserver     Downloads
+ .cargo              .local          .vim          Games
+ .config             .lyxauth        .viminfo      ISOs
+ .electrum           .npm            .vnc          Music
+ .festival_history   .pki            .wget-hsts    Pictures
+ .gnupg              .pulse-cookie   .wine         Projects
+ .greentunnel        .snes9x         .Xauthority   Videos
+
+\e[32m[!]\e[0m Success!
+"
+
+;;
+
+*)
+echo "Try again"; tryls2
+esac
+}
+
+
+lssegment
+
+cdsegment(){
+
+sleep 3; clear && echo -e "\ncd - Change working directory\n"
+
+echo "This is the equivalant of double clicking a folder on windows, but this time you type it out, for example:"
+
+echo -e " 
+\e[34m Desktop    Downloads  ISOs    Pictures   Videos
+ Documents  Games      Music   Projects\e[0m\n"
+
+echo -e "If I wanted to go to Projects I would run
+
+\e[32mcd\e[0m Projects/"
+
+echo -e "\n\e[32m[!]\e[0m How about you try yourself? (try cd into Games/)"; trycd
+}
+
+trycd(){
+
+read -p "~ $ " cdcommand
+case $cdcommand in
+
+"cd Games")
+echo -e "\n\e[32m[!]\e[0m Success! now, to be able to tell what directory you're in, you can run pwd. This is however quite obsolete for most linux systems as your shell prompt actually just shows where you are, for your case right now it would be:
+
+~/Games $
+
+Don't worry if your shell looks something like 
+
+\e[32mmenenjoyer@Thinkpad\e[0m:\e[34m~\e[0m$
+
+\n\e[31m[!]\e[0m There's many types of these shell prompts, but what they all have in common is they show the current working directory, now you might be wondering what the ~ stands for. That stands for /home/yourusername/, ~ just a shortform so you don't have as much text on screen or have to type as much.\n"
+;;
+"cd Games/")
+echo -e "\n\e[32m[!]\e[0m Success! now, to be able to tell what directory you're in, you can run pwd. This is however quite obsolete for most linux systems as your shell prompt actually just shows where you are, for your case right now it would be:
+
+~/Games $
+
+Don't worry if your shell looks something like 
+
+\e[32mmenenjoyer@Thinkpad\e[0m:\e[34m~\e[0m$
+
+There's many types of these shell prompts, but what they all have in common is they show the current working directory, now you might be wondering what the ~ stands for. That stands for /home/yourusername/, ~ just a shortform so you don't have as much text on screen or have to type as much.\n"
+;;
+"cd games")
+echo "In linux/unix based operating systems, everything is case sensetive, so games/ and Games/ are infact considered as two different directories, try again with the correct capitalization."; trycd
+;;
+"cd games/")
+echo "In linux/unix based operating systems, everything is case sensetive, so games/ and Games/ are infact considered as two different directories, try again with the correct capitalization."; trycd
+;;
+*)
+echo "Wrong command/directory! try again."; trycd
+;;
+esac
+}
+
+cdsegment
+
+trycd2(){
+echo -e "\e[32m[!]\e[0m Let's try one more time, this time go to Downloads\n"
+
+read -p "~ $ " cdcommand2
+case $cdcommand2 in
+
+"cd Downloads")
+echo -e "\n\e[32m[!]\e[0m Success!
+
+Your prompt would probably look something like this right now.
+
+~/Downloads $ or \e[32mmenenjoyer@Thinkpad\e[0m:\e[34m~/Downloads\e[0m$" 
+;;
+"cd Downloads/")
+echo -e "\n\e[32m[!]\e[0m Success!
+
+Your prompt would probably look something like this right now.
+
+~/Downloads $ or \e[32mmenenjoyer@Thinkpad\e[0m:\e[34m~/Downloads\e[0m$" 
+;;
+*)
+echo "Wrong command/directory! try again."; trycd2
+;;
+esac
+}
+
+trycd2
+
+trycd3(){
+echo -e "\n\e[32m[!]\e[0m You can also cd directly into directories inside directories, such as
+
+cd ~/Pictures/Wallpapers/
+
+How about you try go to ~/Documents/School/2022/"
+
+read -p "~ $ " cdcommand3
+case $cdcommand3 in
+
+"cd ~/Documents/School/2022/")
+echo -e "\n\e[32m[!]\e[0m Success!"
+;;
+"cd ~/Documents/School/2022")
+echo -e "\n\e[32m[!]\e[0m Success!"
+;;
+"cd Documents/School/2022")
+echo -e "\n\e[32m[!]\e[0m Success!"
+;;
+"cd Documents/School/2022/")
+echo -e "\n\e[32m[!]\e[0m Success!"
+;;
+*)
+echo "Incorrect command/directory"; trycd3
+;; esac 
+}
+
+trycd3
+
+mkdirsegment(){
+
+echo -e "mkdir - make directories
+
+Self explanatory, how about you give it a shot?"
+trymkdir
+}
+
+trymkdir() {
+read -p "~ $ " trymkdir
+echo -e \e[34m$trymkdir\e | awk '{print $2}'
+
+echo "\n You can set all of that up with one command, heck you can even have even more complex folder structures such as this"
+
+echo "
+mkdir Small Testicles
+
+will infact NOT make a folder named Small Testicles, instead it would treat Small and Testicles differently and turn them into two seperate directories, in order for you to have spaces in names, you must either use double quotes (\"\") or single quotes (\`\`)
+
+This is a little annoying but allows you to be able to set up an entire directory structure in literal minutes, suppose you want to have a games folder with great sorting"
+
+echo -e "
+\e[34m Games
+├──  Epic
+├──  GOG
+├──  Itch
+├──  Origin
+├──  Steam
+└──  Ubisoft\e[0m
+"
+trymkdir
+}
+
+mkdirsegment
